@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>LIGHT</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-range name="lightRange" min="{{lightMin}}" max="{{lightMax}}" step="1" [(ngModel)]="lightValue" (ionChange)="showValue(lightValue)">
+      <ion-icon small range-left name="sunny"></ion-icon>
+      <ion-icon range-right name="sunny"></ion-icon>
+    </ion-range>
+  </ion-item>
+  <br>
+  <ion-chip color="danger">
+    <ion-label>{{lightValue}}</ion-label>
+  </ion-chip>
+  <br>
+  <ion-item>
+    <button ion-button (click)="confirmLight()">
+      Confirm
+    </button>
+  </ion-item>
+
+
+</ion-content>
