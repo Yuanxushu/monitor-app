@@ -1,7 +1,9 @@
 mqtt = require('mqtt');
 
 module.exports.connectToBroker = function () {
-    mqttClient = mqtt.connect('tcp://iot.eclipse.org:1883', {
+    //tcp://iot.eclipse.org:1883
+    //tcp://172.20.6.125:1883
+    mqttClient = mqtt.connect('tcp://172.20.6.125:1883', {
             keepalive: 3000
         }),
         //connect to the broker by the given url and options and return a client
