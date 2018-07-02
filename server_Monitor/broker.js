@@ -20,12 +20,11 @@ module.exports.connectToBroker = function () {
     */
     mqttClient.on('connect', () => {
         console.log('Mqtt connected.');
-        mqttClient.subscribe(mqttTopic_test);
-
-        mqttClient.subscribe(mqttTopic_light);
-        // mqttClient.subscribe(mqttTopic_temp);
-        // mqttClient.subscribe(mqttTopic_pressure);
-        // mqttClient.subscribe(mqttTopic_humidity);
+        // mqttClient.subscribe(mqttTopic_test);
+        //mqttClient.subscribe(mqttTopic_light);
+        mqttClient.subscribe(mqttTopic_temp);
+        mqttClient.subscribe(mqttTopic_pressure);
+        mqttClient.subscribe(mqttTopic_humidity);
 
         //mqttClient.subscribe(mqttTopic_1); //subscribe
         //startStreamSimulation(); //publish

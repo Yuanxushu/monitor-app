@@ -1,12 +1,32 @@
 <ion-header>
-        <ion-navbar>
-          <button ion-button menuToggle>
-            <ion-icon name="menu"></ion-icon>
-          </button>
-          <ion-title>PRESSURE</ion-title>
-        </ion-navbar>
-      </ion-header>
-      
-      <ion-content padding>
-        
-      </ion-content>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>PRESSURE</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-0>
+        Pressure
+        <ion-chip color="">
+          <ion-label>{{pressureValue}} kPa</ion-label>
+        </ion-chip>
+      </ion-col>
+
+      <ion-col col-12>
+        <ion-range color="" name="pressureRange" min="{{pressureMin}}" max="{{pressureMax}}" step="1" [(ngModel)]="pressureValue" (ionChange)="showValue(pressureValue)">
+          <ion-icon small range-left name=""></ion-icon>
+          <ion-icon range-right name=""></ion-icon>
+        </ion-range>
+      </ion-col>
+      <ion-col>
+        <button ion-button (click)="confirmPressure()">confirm</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

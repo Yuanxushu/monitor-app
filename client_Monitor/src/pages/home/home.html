@@ -9,7 +9,7 @@
 
 <ion-content padding>
 
-  <ion-grid>
+  <!-- <ion-grid>
     <ion-row>
       <ion-col>
 
@@ -21,17 +21,20 @@
 
       </ion-col>
     </ion-row>
+  </ion-grid> -->
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <button ion-button (click)="goTempPage()" icon-end>
+          temperature
+          <ion-icon name="wifi"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 
   <ion-grid>
     <ion-row>
-      <ion-col>
-        <button ion-button (click)="goLightPage()" icon-end>
-          light
-          <ion-icon name="sunny"></ion-icon>
-        </button>
-      </ion-col>
-
       <ion-col>
         <button ion-button (click)="goPressurePage()" icon-end>
           Pressure
@@ -44,13 +47,6 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <button ion-button (click)="goTempPage()" icon-end>
-          temperature
-          <ion-icon name="wifi"></ion-icon>
-        </button>
-      </ion-col>
-
-      <ion-col>
         <button ion-button (click)="goHumidityPage()" icon-end>
           humidity
           <ion-icon name="flashlight"></ion-icon>
@@ -58,5 +54,9 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+
+
+
+
 
 </ion-content>

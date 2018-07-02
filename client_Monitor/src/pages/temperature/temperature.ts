@@ -14,7 +14,7 @@ export class TemperaturePage {
 
   constructor(private http: Http) {
     this.tempMin = 10;
-    this.tempMax = 80;
+    this.tempMax = 30;
     this.tempValue = this.tempMin;
   }
 

@@ -14,15 +14,17 @@ import { HumidityPage } from '../humidity/humidity';
 })
 
 export class HomePage {
+  // tempPage: TemperaturePage;
+  // pressurePage: PressurePage;
+  // humidityPage: HumidityPage;
+
   input: string;
 
-  constructor(private http: Http, public navCtrl: NavController) {
+  constructor(private http: Http, public navCtrl: NavController,
+    public tempPage: TemperaturePage,
+    public pressurePage: PressurePage,
+    public humidityPage: HumidityPage) {
 
-  }
-
-
-  goLightPage() {
-    this.navCtrl.push(LightPage)
   }
 
   goTempPage() {
@@ -36,24 +38,44 @@ export class HomePage {
   goHumidityPage() {
     this.navCtrl.push(HumidityPage)
   }
+  // //temperature
+  // tempValue = this.tempPage.tempValue;
+  // temMin = this.tempPage.tempMin;
+  // temMax = this.tempPage.tempMax;
 
-  
-  inputNumber() {
-    var data = {
-      input: this.input
-    };
+  // confirmTemp() {
+  //   this.tempPage.confirmTemp();
+  // }
 
-    this.http.post('http://localhost:8000', data).pipe(
-      map(res => res.json())
-    ).subscribe(response => {
-      console.log('POST Response:', response);
-    });
+  //humidity
 
-    this.http.get('http://localhost:8000/' + this.input).pipe(
-      map(res => res.json())
-    ).subscribe(response => {
-      console.log('GET Response:', response);
-    });
+  //pressure
 
-  }
+
+  /************  old version **********************/
+  // goLightPage() {
+  //   this.navCtrl.push(LightPage)
+  // }
+
+
+
+
+  // inputNumber() {
+  //   var data = {
+  //     input: this.input
+  //   };
+
+  //   this.http.post('http://localhost:8000', data).pipe(
+  //     map(res => res.json())
+  //   ).subscribe(response => {
+  //     console.log('POST Response:', response);
+  //   });
+
+  //   this.http.get('http://localhost:8000/' + this.input).pipe(
+  //     map(res => res.json())
+  //   ).subscribe(response => {
+  //     console.log('GET Response:', response);
+  //   });
+
+  // }
 }

@@ -37,8 +37,8 @@ export class MyApp {
     // set our app's pages
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'Control List', component: ListPage },
-      { title: 'Light Control',component: LightPage},
+      //{ title: 'Control List', component: ListPage },
+      //{ title: 'Light Control',component: LightPage},
       { title: 'Temperature Control',component: TemperaturePage},
       { title: 'Pressure Control',component: PressurePage},
       { title: 'Humidity Control',component: HumidityPage}

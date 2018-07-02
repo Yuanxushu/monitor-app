@@ -1,12 +1,31 @@
 <ion-header>
-        <ion-navbar>
-          <button ion-button menuToggle>
-            <ion-icon name="menu"></ion-icon>
-          </button>
-          <ion-title>HUMIDITY</ion-title>
-        </ion-navbar>
-      </ion-header>
-      
-      <ion-content padding>
-        
-      </ion-content>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>HUMIDITY</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-0>
+        Humidity
+        <ion-chip color="">
+          <ion-label>{{humiValue}} %</ion-label>
+        </ion-chip>
+      </ion-col>
+
+      <ion-col col-12>
+        <ion-range color="" name="humiRange" min="{{humiMin}}" max="{{humiMax}}" step="1" [(ngModel)]="humiValue" (ionChange)="showValue(humiValue)">
+          <ion-icon small range-left name=""></ion-icon>
+          <ion-icon range-right name=""></ion-icon>
+        </ion-range>
+      </ion-col>
+      <ion-col>
+        <button ion-button (click)="confirmHumi()">confirm</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

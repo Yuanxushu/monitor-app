@@ -8,21 +8,26 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-item>
-    <ion-range [(ngModel)]="tempValue" color="danger" min="{{tempMin}}" max="{{tempMax}}" step="1" (ionChange)="showValue(tempValue)"></ion-range>
-  </ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-0>
+        Temperature
+        <ion-chip color="danger">
+          <ion-label>{{tempValue}} ℃</ion-label>
+        </ion-chip>
+      </ion-col>
 
-  <br>
-  <ion-chip color="danger">
-    <ion-label>{{tempValue}}</ion-label>
-  </ion-chip>
-  <br>
-  <ion-item>
-    <button ion-button (click)="confirmTemp()">
-      Confirm
-    </button>
-  </ion-item>
+      <ion-col col-12>
+        <ion-range color= "danger" name="tempRange" min="{{tempMin}}" max="{{tempMax}}" step="1" [(ngModel)]="tempValue" (ionChange)="showValue(tempValue)">
+          <ion-icon small range-left name=""></ion-icon>
+          <ion-icon range-right name=""></ion-icon>
+        </ion-range>
+      </ion-col>
+      <ion-col>
+        <button ion-button (click)="confirmTemp()">confirm</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 
 </ion-content>
-

@@ -88,14 +88,19 @@ app.post('/temp', function (req, res) {
         passed: true,
         message: 'Temperature value: ' + req.body.tempValue
     });
-    broker.temp_Msg(req.body.tempValue);
-    broker.getMessage();
+    var data={
+        temperature: req.body.tempValue
+    }
+    
+    broker.temp_Msg(data);
+    
 });
 
 app.get('/temp/:tempValue', function (req, res) {
     res.json({
         temp: req.params.tempValue
     })
+    broker.getMessage();
 });
 
 /******* 3-pressure control *******/
@@ -104,30 +109,39 @@ app.post('/pressure', function (req, res) {
         passed: true,
         message: 'Pressure value: ' + req.body.pressureValue
     });
-    broker.pressure_Msg(req.body.lightValue);
-    broker.getMessage();
+    var data={
+        pressure: req.body.pressureValue
+    }
+    broker.pressure_Msg(data);
+    
 });
 
 app.get('/pressure/:pressureValue', function (req, res) {
     res.json({
         light: req.params.pressureValue
     })
+    broker.getMessage();
 });
 
 /******* 4-humidity control *******/
 app.post('/humidity', function (req, res) {
     res.send({
         passed: true,
-        message: 'humidity value: ' + req.body.humidityValue
+        message: 'humidity value: ' + req.body.humiValue
     });
-    broker.humidity_Msg(req.body.humidityValue);
-    broker.getMessage();
+    var data={
+        humi: req.body.humiValue
+    }
+    broker.humidity_Msg(req.body.humiValue);
+    
 });
 
 app.get('/humidity/:humidityValue', function (req, res) {
     res.json({
         humidity: req.params.humidityValue
-    })
+    });
+
+    broker.getMessage();
 });
 
 
