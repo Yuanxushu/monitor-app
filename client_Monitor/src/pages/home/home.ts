@@ -7,6 +7,7 @@ import { LightPage } from '../light/light';
 import { TemperaturePage } from '../temperature/temperature';
 import { PressurePage } from '../pressure/pressure';
 import { HumidityPage } from '../humidity/humidity';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-home',
@@ -23,7 +24,8 @@ export class HomePage {
   constructor(private http: Http, public navCtrl: NavController,
     public tempPage: TemperaturePage,
     public pressurePage: PressurePage,
-    public humidityPage: HumidityPage) {
+    public humidityPage: HumidityPage,
+    private storage: Storage) {
 
   }
 

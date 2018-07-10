@@ -5,6 +5,7 @@ var express = require('express'),
     path = require('path'),
     logger = require('morgan'),
     cors = require('cors'),
+    forward = require('http-port-forward')
     //port = 3000,
 
     broker = require('./broker.js');
@@ -21,11 +22,16 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(logger('dev'));
 app.use(cors());
-app.set('port', process.env.PORT || 8000)
 
-server.listen(app.get('port'), function () {
-    console.log("Listening on port: " + app.get('port'))
-});
+var port = process.env.PORT||8000;
+app.listen(port);
+console.log('Listening on port ',port);
+// app.set('port', process.env.PORT || 8000);
+
+// server.listen(app.get('port'), function () {
+//     console.log("Listening on port: " + app.get('port'))
+// });
+
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -39,6 +45,7 @@ app.get("/", function (req, res) {
     // res.render('pages/index', {
     //     page: req.url
     // });
+    console.log('hi');
     res.send('hello world');
 
 });
@@ -91,17 +98,24 @@ app.post('/temp', function (req, res) {
     var data={
         temperature: req.body.tempValue
     }
-    
     broker.temp_Msg(data);
     
 });
 
 app.get('/temp/:tempValue', function (req, res) {
+    
     res.json({
         temp: req.params.tempValue
     })
+    
+    // var data={
+    //     temp: req.params.tempValue
+    // }
+    
+    //broker.temp_Msg(data);
     broker.getMessage();
 });
+
 
 /******* 3-pressure control *******/
 app.post('/pressure', function (req, res) {
@@ -118,7 +132,7 @@ app.post('/pressure', function (req, res) {
 
 app.get('/pressure/:pressureValue', function (req, res) {
     res.json({
-        light: req.params.pressureValue
+        pressure: req.params.pressureValue
     })
     broker.getMessage();
 });
@@ -132,7 +146,7 @@ app.post('/humidity', function (req, res) {
     var data={
         humi: req.body.humiValue
     }
-    broker.humidity_Msg(req.body.humiValue);
+    broker.humidity_Msg(data);
     
 });
 
@@ -140,7 +154,6 @@ app.get('/humidity/:humidityValue', function (req, res) {
     res.json({
         humidity: req.params.humidityValue
     });
-
     broker.getMessage();
 });
 

@@ -36,7 +36,7 @@ module.exports.connectToBroker = function () {
     mqttClient.on('offline', () => {
         console.log('Mqtt offline.');
         mqttClient.unsubscribe(mqttTopic_test);
-        clearInterval(streamInterval);
+        //clearInterval(streamInterval);
     })
 }
 
@@ -79,33 +79,33 @@ module.exports.humidity_Msg = function (data) {
 /* 
    Function that publishes simulated data to the MQTT broker every ≈20ms
    */
-var streamInterval;
-var msFrequency = 5000;
+// var streamInterval;
+// var msFrequency = 5000;
 
-function startStreamSimulation() {
+// function startStreamSimulation() {
 
-    var v1 = 0,
-        v2 = 0,
-        v3 = 0;
+//     var v1 = 0,
+//         v2 = 0,
+//         v3 = 0;
 
-    streamInterval = setInterval(function () {
+//     streamInterval = setInterval(function () {
 
-        /* Prepare random data */
-        v1 = returnRandomFloat(0, 10);
-        v2 = returnRandomFloat(0, 10);
-        v3 = returnRandomFloat(0, 10);
+//         /* Prepare random data */
+//         v1 = returnRandomFloat(0, 10);
+//         v2 = returnRandomFloat(0, 10);
+//         v3 = returnRandomFloat(0, 10);
 
-        /* Publish random data to the corresponding MQTT topic as a JSON string  */
-        mqttClient.publish(mqttTopic_mine, JSON.stringify({
-            'v1': v1,
-            'v2': v2,
-            'v3': v3
-        }));
+//         /* Publish random data to the corresponding MQTT topic as a JSON string  */
+//         mqttClient.publish(mqttTopic_mine, JSON.stringify({
+//             'v1': v1,
+//             'v2': v2,
+//             'v3': v3
+//         }));
 
 
-    }, msFrequency);
-}
+//     }, msFrequency);
+// }
 
-function returnRandomFloat(min, max) {
-    return (Math.random() * (max - min) + min).toFixed(2);
-}
+// function returnRandomFloat(min, max) {
+//     return (Math.random() * (max - min) + min).toFixed(2);
+// }

@@ -1,5 +1,5 @@
 {
-  "name": "monitorcontrol",
+  "name": "servercontrol",
   "version": "1.0.0",
   "description": "monitor",
   "main": "app.js",
@@ -9,6 +9,7 @@
     "errorhandler": "^1.5.0",
     "express": "^4.16.3",
     "helmet": "^3.12.1",
+    "http-port-forward": "^2.0.3",
     "mongoose": "^5.1.5",
     "morgan": "^1.9.0",
     "mqtt": "^2.18.1",
@@ -16,11 +17,13 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "keywords": [
     "monitor"
   ],
   "author": "xuxu",
   "license": "ISC"
+  
 }
