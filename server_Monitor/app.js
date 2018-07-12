@@ -45,10 +45,12 @@ app.get("/", function (req, res) {
     // res.render('pages/index', {
     //     page: req.url
     // });
-    console.log('hi');
+    //console.log('hi');
     res.send('hello world');
+    
 
 });
+
 
 app.post('/', function (req, res) {
     //console.log((typeof(req.body.input)));
@@ -64,9 +66,11 @@ app.get('/:input', function (req, res) {
     res.json({
         input: req.params.input
     })
-   
-    //console.log(typeof(req.params.input))
-    //broker.testMsg(data);
+   var data = {
+    input: req.params.input
+   }
+    broker.connectToBroker();
+    broker.testMsg(data);
     broker.getMessage();
     //res.json("Welcome");
 
@@ -78,14 +82,39 @@ app.post('/light', function (req, res) {
         passed: true,
         message: 'Light value: ' + req.body.lightValue
     });
-    broker.light_Msg(req.body.lightValue);
-    broker.getMessage();
+    var data = {
+        light: req.body.lightValue
+    }
+    broker.light_Msg(data);
+
 });
 
 app.get('/light/:lightValue', function (req, res) {
     res.json({
         light: req.params.lightValue
-    })
+    });
+    broker.getMessage();
+});
+
+//light switcher
+app.post('/light_switch', function (req, res) {
+    res.send({
+        passed: true,
+        message: 'Switch: ' + req.body.switchStatus
+    });
+    var data = {
+        light_switch: req.body.switchStatus
+    }
+    broker.light_switch_Msg(data);
+    //broker.getMessage();
+});
+
+app.get('/light_switch/:switch', function (req, res) {
+    res.json({
+        switch: req.params.switch
+    });
+
+    broker.getMessage();
 });
 
 
@@ -96,7 +125,7 @@ app.post('/temp', function (req, res) {
         message: 'Temperature value: ' + req.body.tempValue
     });
     var data={
-        temperature: req.body.tempValue
+        temp: req.body.tempValue
     }
     broker.temp_Msg(data);
     
@@ -108,11 +137,10 @@ app.get('/temp/:tempValue', function (req, res) {
         temp: req.params.tempValue
     })
     
-    // var data={
-    //     temp: req.params.tempValue
-    // }
-    
-    //broker.temp_Msg(data);
+    var data={
+        temp: req.params.tempValue
+    }
+    broker.temp_Msg(data);
     broker.getMessage();
 });
 
@@ -126,6 +154,7 @@ app.post('/pressure', function (req, res) {
     var data={
         pressure: req.body.pressureValue
     }
+
     broker.pressure_Msg(data);
     
 });
@@ -134,6 +163,10 @@ app.get('/pressure/:pressureValue', function (req, res) {
     res.json({
         pressure: req.params.pressureValue
     })
+    var data={
+        pressure: req.params.pressureValue
+    }
+    broker.pressure_Msg(data);
     broker.getMessage();
 });
 
@@ -154,6 +187,10 @@ app.get('/humidity/:humidityValue', function (req, res) {
     res.json({
         humidity: req.params.humidityValue
     });
+    var data={
+        humi: req.params.humidityValue
+    }
+    broker.humidity_Msg(data);
     broker.getMessage();
 });
 

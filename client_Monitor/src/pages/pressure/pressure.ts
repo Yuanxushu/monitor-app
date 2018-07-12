@@ -10,6 +10,8 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'pressure.html'
 })
 export class PressurePage {
+  host: string
+
   pressureValue: number
   pressureMin: number
   pressureMax: number
@@ -17,7 +19,7 @@ export class PressurePage {
   constructor(private http: Http, private storage: Storage) {
     this.pressureMin = 1;
     this.pressureMax = 10;
-    //this.pressureValue = this.pressureMin;
+    this.host = 'http://55ce3faa.ngrok.io';
     this.getLastValue();
   }
 
@@ -43,24 +45,20 @@ export class PressurePage {
     }
     //public ip:192.122.131.145
     //private ip:192.168.96.200
-    //http://784a7de7.ngrok.io
     //server: https://server-control.herokuapp.com
 
-    this.http.post('http://8e6a536c.ngrok.io/pressure', data).pipe(
+    this.http.post(this.host + '/pressure', data).pipe(
       map(res => res.json())
     ).subscribe(response => {
       console.log('PRESSURE POST Response:', response);
     });
 
-    this.http.get('http://8e6a536c.ngrok.io/pressure/' + this.pressureValue).pipe(
+    this.http.get(this.host + '/pressure/' + this.pressureValue).pipe(
       map(res => res.json())
     ).subscribe(response => {
       console.log('PRESSURE GET Response:', response);
     });
     this.storage.set('pressure',this.pressureValue);
   }
-
-  
-   
  
 }

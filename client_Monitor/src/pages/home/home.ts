@@ -15,18 +15,18 @@ import { Storage } from '@ionic/storage';
 })
 
 export class HomePage {
-  // tempPage: TemperaturePage;
-  // pressurePage: PressurePage;
-  // humidityPage: HumidityPage;
 
   input: string;
 
   constructor(private http: Http, public navCtrl: NavController,
     public tempPage: TemperaturePage,
     public pressurePage: PressurePage,
-    public humidityPage: HumidityPage,
-    private storage: Storage) {
+    public humidityPage: HumidityPage,public lightPage: LightPage) {
 
+  }
+
+  goLightPage() {
+    this.navCtrl.push(LightPage);
   }
 
   goTempPage() {

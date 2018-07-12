@@ -10,6 +10,8 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'temperature.html'
 })
 export class TemperaturePage {
+  host: string
+
   tempValue: number
   tempMin: number
   tempMax: number
@@ -18,6 +20,7 @@ export class TemperaturePage {
     this.tempMin = 10;
     this.tempMax = 30;
     this.getLastValue();
+    this.host = 'http://55ce3faa.ngrok.io';
 
   }
 
@@ -42,16 +45,16 @@ export class TemperaturePage {
       tempValue: this.tempValue
     }
 
-    //http://8e6a536c.ngrok.io
+    //http://580314eb.ngrok.io
     //server: https://server-control.herokuapp.com
     
-    this.http.post('http://8e6a536c.ngrok.io/temp', data).pipe(
+    this.http.post(this.host + '/temp', data).pipe(
       map(res => res.json())
     ).subscribe(response => {
       console.log('TEMP POST Response:', response);
     });
 
-    this.http.get('http://8e6a536c.ngrok.io/temp/' + this.tempValue).pipe(
+    this.http.get(this.host + '/temp/' + this.tempValue).pipe(
       map(res => res.json())
     ).subscribe(response => {
       console.log('TEMP GET Response:', response);

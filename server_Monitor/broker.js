@@ -12,6 +12,7 @@ module.exports.connectToBroker = function () {
     mqttTopic_test = 'xushuTesting0109';
 
     mqttTopic_light = 'light_xuxu0109';
+    mqttTopic_light_switch = 'light_switch_xuxu0109';
     mqttTopic_pressure = 'pressure_xuxu0109';
     mqttTopic_temp = 'temperature_xuxu0109';
     mqttTopic_humidity = 'humidity_xuxu0109';
@@ -23,7 +24,8 @@ module.exports.connectToBroker = function () {
     mqttClient.on('connect', () => {
         console.log('Mqtt connected.');
         // mqttClient.subscribe(mqttTopic_test);
-        //mqttClient.subscribe(mqttTopic_light);
+        mqttClient.subscribe(mqttTopic_light);
+        mqttClient.subscribe(mqttTopic_light_switch);
         mqttClient.subscribe(mqttTopic_temp);
         mqttClient.subscribe(mqttTopic_pressure);
         mqttClient.subscribe(mqttTopic_humidity);
@@ -35,7 +37,7 @@ module.exports.connectToBroker = function () {
 
     mqttClient.on('offline', () => {
         console.log('Mqtt offline.');
-        mqttClient.unsubscribe(mqttTopic_test);
+        //mqttClient.unsubscribe(mqttTopic_test);
         //clearInterval(streamInterval);
     })
 }
@@ -51,12 +53,17 @@ module.exports.getMessage = function () {
 }
 
 module.exports.testMsg = function (data) {
-    mqttClient.publish(mqttTopic_test, JSON.stringify(data))
+    mqttClient.publish(mqttTopic_test, JSON.stringify(data));
 
 }
 
 module.exports.light_Msg = function (data) {
     mqttClient.publish(mqttTopic_light, JSON.stringify(data))
+
+}
+
+module.exports.light_switch_Msg = function (data) {
+    mqttClient.publish(mqttTopic_light_switch, JSON.stringify(data))
 
 }
 
