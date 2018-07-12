@@ -140,7 +140,7 @@ app.get('/temp/:tempValue', function (req, res) {
     var data={
         temp: req.params.tempValue
     }
-    broker.temp_Msg(data);
+    //broker.temp_Msg(data);
     broker.getMessage();
 });
 
